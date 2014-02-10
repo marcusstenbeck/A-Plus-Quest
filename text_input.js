@@ -10,44 +10,54 @@
  *   validWordsArray: an NxM sized array where the first row contains an array
  *                    of words that are valid for the first word. The second row
  *                    for the second word, and so on.
+ *
+ * If the number of written words are fewer than the valid words (words < N),
+ * only the number of written words will be returned. But if there are more
+ * written words than what is allowed (words > N), false is returned.
+ *
+ * If a word is not valid, it will be replaced by the string 'INVALID'. This
+ * results in the number of returned words always being the same as the number
+ * of written words.
  */
 function validateTextInput(str, validWordsArray) {
     words = _textToArray(str);
+    var returnWords = Array();
 
     // If nothing was written, just return the empty array
     if (words.length == 0) {
         return words;
     }
 
-    // The number of words must match the number of rows
-    if (validWordsArray.length != words.length) {
-        return false;
-    }
-
-    // Do some type of sanity check of the word array
-    if (validWordsArray.length == 0) {
-        console.error('At least one valid word is required.');
+    // The number of words must nut be greater than the number of rows
+    if (words.length > validWordsArray.length) {
         return false;
     }
 
     // Go through the list of words and see if they are valid
-    for (var row=0; row<validWordsArray.length; row++) {
+    for (var row=0; row<words.length; row++) {
+        // Some more sanity check
+        if (validWordsArray[row].length == 0) {
+            console.error('Empty arrays are not allowed.');
+            return false;
+        }
+
         for (var col=0; col<validWordsArray[row].length; col++) {
             validWord = validWordsArray[row][col];
             if (words[row].toLowerCase() == validWord.toLowerCase()) {
-                words[row] = validWord; // Copy the valid word
+                returnWords.push(validWord);
                 break; // Break the inner loop
             }
 
             // Last word but still no match
             if (col == (validWordsArray[row].length - 1)) {
-                return false;
+                returnWords.push('INVALID');
+                //return false;
             }
         }
     }
 
     // Everything seems valid, return the array
-    return words;
+    return returnWords;
 }
 
 /**

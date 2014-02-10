@@ -16,6 +16,10 @@ function test_textInput() {
         Array('match', 'matchBox'),
         Array('match', 'matchBox', 'pillow')
     );
+    var validWords4 = Array(
+        Array('goto', 'exit', 'use'),
+        Array('match', 'matchBox')
+    );
     // Contains arrays of input and expected return values
     var testMatrix = Array(
         Array('pickup card', validWords1, Array('pickup', 'card')),
@@ -25,11 +29,14 @@ function test_textInput() {
         Array('eXaminE deSk', validWords1, Array('examine', 'desk')),
         Array('uSE hammER', validWords1, Array('use', 'HaMMeR')),
         Array('pick up card', validWords1, false),
-        Array('examine desks', validWords1, false),
-        Array('stuff', validWords1, false),
+        Array('examine desks', validWords1, Array('examine', 'INVALID')),
+        Array('stuff', validWords1, Array('INVALID')),
         Array('stuff', Array(), false),
         Array('combine match \t\t  matchbox', validWords2, Array('combine', 'match', 'matchBox')),
-        Array('combine matchbox      pillow', validWords3, Array('combine', 'matchBox', 'pillow'))
+        Array('combine matchbox      pillow', validWords3, Array('combine', 'matchBox', 'pillow')),
+        Array('do stuff', Array(Array(), Array()), false),
+        Array('do stuff', validWords1, Array('INVALID', 'INVALID')),
+        Array('exit', validWords4, Array('exit'))
     );
 
     for (var i=0; i<testMatrix.length; i++) {
