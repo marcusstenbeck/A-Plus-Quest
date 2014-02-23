@@ -1,0 +1,386 @@
+INTRO
+     ______             __
+    / \    \__         /\ \                                          __
+    \  \  ___ \__      \_\ \___                                 ___ /\ \__
+     \  \ \ L\   \__  /\___  __\        ___   __  __     __   /'__/ /\_  _\
+      \  \   _____  \ \/__ \ \_/       / __`\/\ \\\ \  /'__`\/\___  \//\ \/
+       \  \  \__  \  \    \ \_\       /\ \L\ \ \ \L\ \/\  __/\/___\ \ \ \ \
+        \  \__\ \  \  \    \/_/       \ \___  \ \____/\ \____\/\____/  \ \_\
+         \/___/  \/___/                \/___`\ \/___/  \/____/\/___/    \/_/
+               Made by Joakim Kjellberg and \ \_\ Marcus Stenbeck
+                                             \/_/
+Oh my god, it's the last day of school and you realize that if you do NOT bring
+home good grades your parents are going to roast you like the turkey you are.
+And even WORSE is that you have to go to summer school with Brenda, the ugly
+neighbor! Something has got to be done, or else the whole summer... all your
+free time... your LIFE, will be destroyed!
+
+AAAAARRRRRGGGGGGHHHHH!!!
+
+You arrive at school in the morning, and you have got the best plan an eleven
+year-old bubble-gum-pumped-boy could have. If you pull this off, you'll be THE k
+id the rest of your life. All you have to do is break in wherever those grades
+are and change them. Go boy!
+
+
+POST INTRO
+
+You look down the hallway and see a lot of lockers accompanied with the one fire
+alarm in the ceiling. You can also see your locker, the one place where you have
+kept all your stolen frogs and firecrackers throughout the years in school, so,
+naturally there is one FOUL odor steaming from the innermost corner of it.
+
+
+HALLWAY
+
+    ALARM - State 1
+
+    You are walking towards the alarm so that you can examine it.
+    With the head bent back, you're looking curiously at the fire alarm.
+    "What can I use to start the alarm? Water...? No...
+    Fire! Yeah, that's it! But where do they have fire in a school?"
+
+        use lighter
+
+        You used the lighter.
+        ALARM!!! The fire alarm is screaming out it's most burning fantasies. All the
+        people in the cafeteria are running out in panic. And the principal has
+        forgotten his keycard. Pity. ;)
+
+    ALARM - State 2
+
+    You are walking towards the alarm so that you can examine it.
+    The alarm is on and you'll probably get tinitus standing this close!
+
+    LOCKER
+
+    After a short walk you are standing by your locker.
+    Locker number 13: Inside there's a chemestry book, some gum and a picture of
+    Barbara Streisand - eeew!
+
+    I Hallway
+        use keycard
+
+        You used the keycard.
+        Office door is unlocked, good     <----- Punkt saknas
+
+    I Hallway
+        use knife
+
+        You used the knife.
+        With your handy-dandy lockpicking knowledge you slide the knife
+        in the doorspring, and with a twitch of your hand you unlocked
+        the door. Ahhh.. technology these days, so safe!
+
+1001
+
+The door opens like a well oiled... door.
+You can see a bunch of small desks and a larger teachers desk with a drawer
+under it. On the desk lies a paper with something written on it.
+
+    DESK - State 1
+
+    You start examine the desk.
+    Oh lord! The paper on the desk is your English grade, a D+. This you must change
+    unless you want to commit mental suicide. (Tip: try erasing the text somehow)
+    In the drawer lies the one pen.
+
+        pickup pen
+
+    DESK - State 2
+
+    You start examine the desk.
+    The only thing left on the desk is your grade.
+
+        use magicerase
+
+        You used the magicerase.
+        You smear on some MagicErase and your D+ fades away.
+
+        use pen
+
+        You used the pen.
+        Utilizing your beloved pen, and without concern, you gently write the letter A
+        followed by a plus.
+        You're one BADASS now. You've got A+ in English. Feeling better already?
+
+        use pen
+
+        You used the pen.
+        No use to do that though. English grade already changed.
+
+1002
+
+Entering the dark room of chemistry, you see the blinking interface of a
+computer. All the nuclear radiation has made the screen glow green... or else
+it's just an old computer.
+
+    COMPUTER - State 1
+
+    You walk up to the computer and push the button to start it.
+    Bzzzzzzklllrrrrrrrkkkchnngngggggg.............
+    "Enter password:"                                            <------------------ Skriv ut en bokstav i taget
+
+    Man! The old Beast tells you to give him the Magic Word. Where could you ever
+    find that password?
+
+        use paper
+
+        You used the paper.
+        Tick, tick, tick.... chong!
+        "Enter password: ILoveMyJob
+        You are now logged in as Margaret Thatcher!"
+
+        While browsing the files you see one file more interesting than the others. It's
+        the file containing your grade. Now it's just one tap on the keyboard and your f
+        oul C turns in to a beautiful A+!
+
+        "Press ENTER to change the grade to: 'A+'"   <--- Paus innan samt skrivs ut en bokstav i taget
+
+        <VÄNTAR PÅ ENTER-TRYCK>
+
+        Grade has been changed - No more biology this year!
+
+    COMPUTER - State 2
+
+    You sit down by the computer.
+    "Enter password:"
+
+        use paper
+
+        You used the paper.
+        No use to do that though. Biology grade already changed.
+
+1003
+
+Entering classroom 1003.
+
+    TRASHCAN - State 1
+
+    You look down the trash can.
+    Ooo, a lighter! And... a dead frog! God it stinks!
+
+        pickup lighter
+
+    TRASHCAN - State 2
+
+    You look down the trash can.
+    The only thing left in the trashcan is the dead frog.
+
+    DESK - State 1
+
+    You start examine the desk.
+    Hm... This certainly is a big pile of papers, a piece of paper may actually come
+    in handy - i think.
+
+        pickup paper
+
+    DESK - State 2
+
+    You start examine the desk.
+    You already have a paper, no reason to take another one...
+
+
+1004
+
+Entering classroom 1004.
+
+    BOOKSHELF - State 1
+
+    You browse through the books in the bookshelf.
+    Hm... This book seems to be connected to something... A button maybe?
+
+        pickup book
+
+        You tried to pick up the book.
+        What the ----! The bookshelf's opening, it seems to be a secret room. No wonder
+        the room was so small. And... What's THAT?! The French teacher is having an
+        affair with the secretary - grose!
+
+        - "Wha- what are you doing here?! Say ONE word about this to anyone and you're  <---- Skrivs ut en bokstav i taget
+        dead mister!"
+        - "It's OK, I won't... As long as you change my grade in French to an A+!"
+
+        Aaah, blackmailing; it always works! The teacher and the secretary rushes out of
+        the room, while you've got A+ in French - Sweet!
+
+    BOOKSHELF - Sate 2
+
+    [Ingen ny text, jämfört med State 1]
+
+        pickup book
+
+        You tried to pick up the book.
+        But for no reason, because the 'door' is already open and French grade changed
+        to an A+.
+
+
+1005 - State 1
+
+Chuck, chuck.
+Argh, the door to room 1005 seems to be locked.
+- "If I only had something solid and thin to pick the lock with..."
+
+You are still in the hallway.
+
+
+1005 - State 2
+
+That lock seemed to be an easy match to you.
+In here you find yourself standing by a couple of generic school benches
+and a regular desk with a drawer.
+
+    DESK - State 1
+
+    On the desk lies nothing but dust.
+    On the other hand there's a bottle of magicerase in the bottom of the drawer.
+    Aaah.. magicerase, the only that works if you want to erase something permanent
+    on a paper!
+
+        pickup magicerase
+
+    DESK - State 2
+
+    On the desk lies nothing but dust.
+    And nothing left in the drawer... except more dust.
+
+
+CAFETERIA - State 1
+
+You see a bunch of students stuffing their faces with the culinary
+disaster of school food. With your knowledge you know that nothing
+but fire could move these people out of their seats...
+
+    TABLE - State 1
+
+    You recognize the face of your arch enemy - The Principal, and beside
+    him lies the keycard to his office. Somehow you know that you need that
+    keycard. You just don't know how to get it.
+    And there are some knives and forks on the table too.
+    Knives are thin and solid...
+
+        pickup knife (funkar)
+
+        pickup keycard (funkar inte)
+
+        Invalid: Seems like you have to do something else before using that.
+
+CAFETERIA - State 2
+
+With the ringing of the fire-alarm in the air, no one is present in this room ex
+cept you which is always taken by some kiss up-seatwarmer-student.      <---------------- FEL?! Jämför med TABLE (2)
+...and with the firealarm ringing in the air no one is left in the cafeteria.
+
+    TABLE - State 2
+
+    As you look across a mutilated table of school lunch you notice
+    the prescence of the keycard by the seat the principal sat by before,
+    which is otherwise always taken by some kiss up-seatwarmer-student.
+    And there still are some knives and forks here.
+
+    pickup keycard
+
+    OBS: Om man undersöker borde igen så stårt det att det ligger ett keycard där!
+
+
+QUARTERS
+
+You find out that this room is the lair of which all evil spawns from.
+Do what you must, and leave quick is your first thought. There is a book
+hanging from a chain in the wall and by that book is a telephone machine.
+The last thing you notice is that the teachers seem to... smile? That
+thought is thrown away as fast as you realize your starting to like it in here.
+
+    CODEBOOK - State 1
+
+    This seems to be a code book... oh god.    <---- Punkt? Liten bokstav
+    there is an interesting code there!
+
+        use paper
+
+        You write down the code gracefully on your very own paper.
+
+        OBS: Att använda pappret igen gör att man skriver av koden igen. Borde vara "you already have the code"...
+
+    CODEBOOK - State 2
+
+    This seems to be a code book... oh god.
+    Cool.. you know this code already.
+
+
+OFFICE - State 1
+
+Chuck, chuck.
+Argh, the door to the office seems to be locked...
+... but it has a keycard reader!     <---------------- Paus innan detta dyker upp
+
+You are still in the hallway.
+
+
+OFFICE - State 2
+
+You get into the principals office, not that you never have done that
+before, but now you're here all alone. That's creepy.
+
+Anyway, the thing that you can see here is a folded laptop on the edge of
+a desk. It looks attractively expensive, and yet it is scary to want to
+have it since you never know what the principal does in here.
+
+    LAPTOP - State 1
+
+    With the luck you're blessed with, the principal has forgotten the whole
+    schools Behavior grades. Pick it up and use it or not?
+
+    What to do?
+
+    W h a t  t o  d o... ... ... ?   <---- skrivs ut en bokstav i taget
+
+        pickup laptop
+
+        You have to change all the grades before picking this up...  <--- Aha, man måste ha fixat alla ANDRA betyg!
+        Invalid: You cannot perform that command here/yet.
+
+    LAPTOP - State 2
+
+        pickup laptop
+
+        You picked up the laptop.
+
+        use laptop
+
+        Well, as the well behaved and not least to say, GENEROUS, you decide to
+        give everyone is school a summer present. An A+ in behaviour.
+
+        BAM BAM!!!
+
+        Someone is knocking on the door, and judging by the voice it's the principal
+        and his no-good henchman, the janitor, which have come to... get inside the
+        office.
+
+        Fast as a rat you escape JUST in time through the window of the office.   <------ Paus här innan nsta rad
+        Now, before you, lies freedom of summer!!! Yeah!! All you think of is that
+        great guy in the sky. God, thank you!
+
+        NOT!!!
+
+
+        GAME FINISH
+
+        But we do thank you!
+        Not only because you changed all the students grades, but that you had the
+        patience, passion, generosity, etc to finish our game. Thanks a lot!
+
+        //Marcus and Joakim of the "A+ Quest" team. Good night!
+
+
+Exempel på inventory
+|-Inventory---|
+|  pen        |
+|  lighter    |
+|             |
+|-Grades left-|
+|  English    |
+|  Chemistry  |
+|  French     |
+|  Behavior   |
+|_____________|
