@@ -36,7 +36,8 @@ function test_textInput() {
         Array('combine matchbox      pillow', validWords3, Array('combine', 'matchBox', 'pillow')),
         Array('do stuff', Array(Array(), Array()), false),
         Array('do stuff', validWords1, Array('INVALID', 'INVALID')),
-        Array('exit', validWords4, Array('exit'))
+        Array('exit', validWords4, Array('exit')),
+        Array('', validWords4, Array())
     );
 
     for (var i=0; i<testMatrix.length; i++) {

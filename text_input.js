@@ -1,3 +1,9 @@
+$('document').ready(function(){
+    //$('#input').find('form').on('submit', sendInput);
+    $('#input').find('form').submit(sendInput); // Might cope better with "return false"(?)
+    $('input[name=textInput]').focus();
+});
+
 /**
  * Validates the text input and compares to the valid values. Returns the text
  * commands as an array if valid, otherwise False is returned. If the string is
@@ -24,8 +30,9 @@ function validateTextInput(str, validWordsArray) {
     var returnWords = Array();
 
     // If nothing was written, just return the empty array
-    if (words.length == 0) {
-        return words;
+    if (words.length == 0
+            || (words.length == 1 && words[0] == "")) {
+        return returnWords;
     }
 
     // The number of words must nut be greater than the number of rows
@@ -62,7 +69,8 @@ function validateTextInput(str, validWordsArray) {
 
 /**
  * Trims away any leading and trailing whitespace and returns an Array of the
- * separated words. If the string is empty, an empty Array is returned.
+ * separated words. If the string is empty, an empty Array is returned (which
+ * has one element with the string "").
  *
  * Is also able to handle multiple whitespace within the string.
  *
@@ -76,4 +84,79 @@ function _textToArray(str) {
 
     // Return the array of words
     return str.split(" ");
+}
+
+/**
+ * Sets up the input text field for registering actions.
+ */
+function setup_OLD() {
+    if (textInputForm.addEventListener) {
+        textInputForm.addEventListener('submit', sendInput);
+    } else if (textInputForm.attachEvent) {
+        textInputForm.attachEvent('onsubmit', sendInput);
+        alert('You seem to be using IE < 9. No worries, we can handle it!');
+    } else {
+        alert("No support for attaching the submit-event... We can't help you with that.");
+    }
+}
+
+/**
+ * Sends the user-input to the game engine.
+ */
+function sendInput_OLD(e) {
+    enableInput(false);
+    e = preventFormSubmit(e);
+    if (window.gameEngine) {
+        window.gameEngine.performAction(textInputForm.textInput.value);
+    } else {
+        alert('No game engine available, but you wrote:\n'
+            +textInputForm.textInput.value+ '\nConverted to:\n'
+            +window.validateTextInput(textInputForm.textInput.value,
+                Array(Array('goto'), Array('goto'), Array('goto'))
+            )
+        );
+    }
+    textInputForm.textInput.value = '';
+    enableInput(true);
+}
+function sendInput(e) {
+    var inputField = $('input[name=textInput]');
+    inputField.prop('disabled', true);
+    if (window.gameEngine) {
+        window.gameEngine.performAction(inputField.val());
+    } else {
+        alert('No game engine available, but you wrote:\n'
+            +textInputForm.textInput.value+ '\nConverted to:\n'
+            +window.validateTextInput(textInputForm.textInput.value,
+                Array(Array('goto'), Array('goto'), Array('goto'))
+            )
+        );
+    }
+    inputField.val('');
+    inputField.prop('disabled', false);
+    inputField.focus();
+    return false; // Prevent submit
+}
+
+/**
+ * Prevents a form from being submitted. Also supports Internet Explorer 8 and
+ * older.
+ */
+function preventFormSubmit_OLD(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else if (textInputForm.attachEvent) { // Avoid using event.returnResult, since it may be false
+        event.returnValue = false; // And yes, "event", not "e"...
+    } else {
+        alert('Unable to prevent submit, due to lack of JavaScript support.');
+    }
+
+    return e;
+}
+
+/**
+ * Enables the text field if 'enable' is set to true, disables it otherwise.
+ */
+function enableInput(enable) {
+    textInputForm.textInput.disabled = !enable;
 }
