@@ -1,0 +1,5 @@
+# Mac OSX default stuff
+.DS_Store
+
+# NPM install directory
+node_modules
