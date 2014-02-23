@@ -1,0 +1,7 @@
+{
+	"name": "a-plus-quest",
+	"version": "0.0.1",
+	"dependencies": {
+		"fsm": "git+ssh://git@github.com:marcusstenbeck/fsm.git"
+	}
+}
