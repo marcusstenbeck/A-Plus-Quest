@@ -1,7 +1,24 @@
+var autoCompleteIndex = 0; // Used when the user tabs between auto-completed words
+
 $('document').ready(function(){
-    //$('#input').find('form').on('submit', sendInput);
-    $('#input').find('form').submit(sendInput); // Might cope better with "return false"(?)
     $('input[name=textInput]').focus();
+    $('input[name=textInput]').on('keydown', function(e) {
+        if (e.keyCode == 9) { // 9 == TAB key
+            e.preventDefault();
+        } else if (e.keyCode == 13) { // 13 == ENTER key
+            e.preventDefault();
+            sendInput(this);
+        }
+    });
+
+    $('input[name=textInput]').on('keyup', function(e) {
+        if (e.keyCode == 9) { // 9 == TAB key
+            autoComplete(this, this.typedChars);
+        } else {
+            this.typedChars = $(this).val();
+            window.autoCompleteIndex = 0; // Reset when the user typed something new
+        }
+    });
 });
 
 /**
@@ -87,40 +104,10 @@ function _textToArray(str) {
 }
 
 /**
- * Sets up the input text field for registering actions.
+ * TODO: Write a description.
  */
-function setup_OLD() {
-    if (textInputForm.addEventListener) {
-        textInputForm.addEventListener('submit', sendInput);
-    } else if (textInputForm.attachEvent) {
-        textInputForm.attachEvent('onsubmit', sendInput);
-        alert('You seem to be using IE < 9. No worries, we can handle it!');
-    } else {
-        alert("No support for attaching the submit-event... We can't help you with that.");
-    }
-}
-
-/**
- * Sends the user-input to the game engine.
- */
-function sendInput_OLD(e) {
-    enableInput(false);
-    e = preventFormSubmit(e);
-    if (window.gameEngine) {
-        window.gameEngine.performAction(textInputForm.textInput.value);
-    } else {
-        alert('No game engine available, but you wrote:\n'
-            +textInputForm.textInput.value+ '\nConverted to:\n'
-            +window.validateTextInput(textInputForm.textInput.value,
-                Array(Array('goto'), Array('goto'), Array('goto'))
-            )
-        );
-    }
-    textInputForm.textInput.value = '';
-    enableInput(true);
-}
-function sendInput(e) {
-    var inputField = $('input[name=textInput]');
+function sendInput(inputElement) {
+    var inputField = $(inputElement);
     inputField.prop('disabled', true);
     if (window.gameEngine) {
         window.gameEngine.performAction(inputField.val());
@@ -139,24 +126,67 @@ function sendInput(e) {
 }
 
 /**
- * Prevents a form from being submitted. Also supports Internet Explorer 8 and
- * older.
- */
-function preventFormSubmit_OLD(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else if (textInputForm.attachEvent) { // Avoid using event.returnResult, since it may be false
-        event.returnValue = false; // And yes, "event", not "e"...
-    } else {
-        alert('Unable to prevent submit, due to lack of JavaScript support.');
-    }
-
-    return e;
-}
-
-/**
  * Enables the text field if 'enable' is set to true, disables it otherwise.
  */
 function enableInput(enable) {
     textInputForm.textInput.disabled = !enable;
+}
+
+/**
+ * Populates the given text input element with an auto-completion of the last
+ * word in the given string with words that are valid at the current location.
+ * The auto-completion is currently case-sensitive. It does not complete "empty
+ * words" - they have to begin with at least one letter.
+ */
+function autoComplete(inputElement, str) {
+    var validWords = getValidWordsForCurrentLocation();
+    var wordArray = _textToArray(str);
+    if (wordArray.len == 0 || wordArray[0] == "") {
+        return;
+    }
+
+    // Only auto-complete the last word in the input
+    var needleIndex = wordArray.length - 1
+    var needle = wordArray.pop(); // Remove the last one AND save it
+
+    // If the needle is followed by whitespace, ignore it
+    if (str.lastIndexOf(needle) + needle.length != str.length) {
+        return;
+    }
+
+    if (needleIndex >= validWords.length) {
+        return; // No more valid words left
+    }
+
+    // Add words which are candidates for this needle
+    var completions = Array();
+    for (var i=0; i<validWords[needleIndex].length; i++) {
+        if (validWords[needleIndex][i].indexOf(needle) == 0) {
+            completions.push(validWords[needleIndex][i]);
+        }
+    }
+
+    if (window.autoCompleteIndex >= completions.length) {
+        window.autoCompleteIndex = 0;
+    }
+
+    if (completions.length > 0) {
+        // Prepend the completion with whatever was before the needle
+        var pre = str.substring(0, str.lastIndexOf(needle));
+        $(inputElement).val(pre + completions[window.autoCompleteIndex]);
+        window.autoCompleteIndex++;
+    }
+}
+
+/**
+ * Returns the words that are valid to use at the current location as a
+ * two-dimensional array, where the first row is valid for the first word and so
+ * on.
+ */
+function getValidWordsForCurrentLocation() {
+    var validWords = [
+        ['use', 'inventory', 'intelligent', 'using', 'pickup', 'goto', 'examine', 'pixie'],
+        ['office', 'outside', 'bookshelf', 'book', 'pen', 'pencil', 'hammer']
+    ];
+    return validWords;
 }
