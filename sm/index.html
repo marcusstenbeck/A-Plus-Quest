@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript" src="../node_modules/fsm/fsm.js"></script>
+<script type="text/javascript">
+
+	function Game() {
+		this.fsm = new FSM();
+
+		this.init = function() {
+			this.fsm.enterState('in_kitchen');
+		};
+
+		this.handleCommand = function(command) {
+			switch(command[0]) {
+				case 'exit':
+					this.fsm.triggerEvent('exit');
+					break;
+
+				case 'examine':
+				case 'pickup':
+					var obj = this.fsm.state.data[command[0]][command[1]]
+					if(typeof obj === 'function') obj();
+					else if(typeof obj === 'string') console.log(obj);
+					else console.log('Could not examine', command[1]);
+					break;
+
+				default:
+					console.log('unknown command', command[0]);
+			}
+		};
+	}
+	var game = new Game();
+	window.game = game; // Attach game to global scope
+
+
+	/**
+	 *  Setup game!
+	 */
+
+	// office
+	var s = game.fsm.createState('in_office');
+	s.onEnter(function(game) {
+		console.log('entered office');
+	});
+	s.onExit(function() {
+		console.log('left office');
+	});
+
+	// kitchen
+	s = game.fsm.createState('in_kitchen');
+	s.data = {
+		examine: {
+			spoon: 'this is truly one majestic spoon'
+		},
+		pickup: {
+			spoon: function() {
+				console.log('with a cold heart, you stole the spoon');
+				alert('i command thee to go to office now');
+				game.fsm.enterState('in_office');
+			}
+		}
+	};
+	s.onEnter(function() {
+		console.log('entered kitchen');
+	});
+	s.onExit(function() {
+		console.log('left kitchen');
+	});
+	s.addTransition('exit', 'in_office');
+
+	// Start game
+	game.init();
+</script>
+</body>
+</html>
